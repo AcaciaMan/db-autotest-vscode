@@ -14,8 +14,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "db-autotest.helloWorld",
-        "title": "Hello World"
+        "command": "db-autotest.callPython",
+        "title": "Call Python"
       }
     ]
   },
