@@ -1,6 +1,5 @@
-node_modules/
-bower_components/
-*.log
-
-build/
-dist/
+out
+dist
+node_modules
+.vscode-test/
+*.vsix
