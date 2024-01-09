@@ -9,7 +9,7 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [ ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
@@ -17,8 +17,27 @@
         "command": "db-autotest.callPython",
         "title": "Call Python"
       }
+    ],
+      "viewsContainers": {
+    "activitybar": [
+      {
+        "id": "my-unique-id",
+        "title": "My Activity Bar Item",
+        "icon": "src/activity_icon.png"
+      }
     ]
   },
+    "views": {
+      "my-unique-id": [
+        {
+          "id": "my-unique-id",
+          "name": "VIEW_NAME"
+        }
+      ]
+    }
+  },
+
+
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",

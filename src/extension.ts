@@ -11,6 +11,9 @@ import * as process from 'process';
 export function activate(context: vscode.ExtensionContext) {
 	console.log('Congratulations, your extension "db-autotest" is now active!');
 
+	// Use the console to output diagnostic information (console.log) and errors (console.error)
+	// This line of code will only be executed once when your extension is activated
+	console.log(`Context ${context.extensionPath} ${context.workspaceState} ${context.globalState} ${context.subscriptions} ${context.extensionMode}`);
 		let disposable = vscode.commands.registerCommand('db-autotest.callPython', () => {
 			// The code you place here will be executed every time your command is executed
 			
@@ -48,3 +51,4 @@ export function activate(context: vscode.ExtensionContext) {
 						});
 		});
 	}
+
