@@ -9,7 +9,7 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [ ],
+  "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
@@ -18,26 +18,24 @@
         "title": "Call Python"
       }
     ],
-      "viewsContainers": {
-    "activitybar": [
-      {
-        "id": "my-unique-id",
-        "title": "My Activity Bar Item",
-        "icon": "src/activity_icon.png"
-      }
-    ]
-  },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "my-unique-id",
+          "title": "My Activity Bar Item",
+          "icon": "src/activity_icon.png"
+        }
+      ]
+    },
     "views": {
       "my-unique-id": [
         {
-          "id": "my-unique-id",
+          "id": "VIEW_ID",
           "name": "VIEW_NAME"
         }
       ]
     }
   },
-
-
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
