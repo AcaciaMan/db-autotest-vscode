@@ -11,7 +11,7 @@ suite('Python Subprocess Test', () => {
             "C:/work/GitHub/db-autotest/db-autotest-mssql/tests/child_process_test.py",
           ],
           {
-            stdio: ["pipe", "pipe", "pipe", null, "ipc"],
+            stdio: ["pipe", "pipe", "pipe", 'ipc', null],
             serialization: "advanced",
           }
         );
