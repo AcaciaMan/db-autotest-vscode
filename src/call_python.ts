@@ -1,25 +1,17 @@
-import { spawn } from 'child_process';
+const python = require('python');
+// create new function
+export function myFunction() {
+    // call python
+    const testMethodName = "Test_Config.test_select_alltables";
+    // create python class instance
+    const instance = new python.Test_Config();
+    
+    // call class instance method
+    const methodName = 'test_select_alltables';
+    const methodParams = instance.getTestMethodParameters();
+    instance.callTestMethod(methodName, methodParams);
+    // print output
+    console.log(instance.getTestMethodOutput());
 
-const pythonPath = "C:/Tools/Python312/python.exe";
-const pythonFilePath = 'C:/work/GitHub/db-autotest/db-autotest-mssql/tests/test_entity.py';
-const className = 'TestLoads';
-const methodName = 'testLoadInit';
+}
 
-const pythonProcess = spawn(pythonPath, [
-  pythonFilePath,
-  "-m",
-  className,
-  methodName,
-]);
-
-pythonProcess.stdout.on('data', (data: Buffer) => {
-    console.log(`stdout: ${data}`);
-});
-
-pythonProcess.stderr.on('data', (data: Buffer) => {
-    console.error(`stderr: ${data}`);
-});
-
-pythonProcess.on('close', (code: number) => {
-    console.log(`child process exited with code ${code}`);
-});

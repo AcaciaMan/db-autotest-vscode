@@ -8,9 +8,14 @@ import * as vscode from 'vscode';
 suite('Extension Test Suite', () => {
 	vscode.window.showInformationMessage('Start all tests.');
 
-	test('Sample test', () => {
+	test('Sample test', (done) => {
 		vscode.window.showInformationMessage("Start Sample test");
 		assert.strictEqual(-1, [1, 2, 3].indexOf(5));
 		assert.strictEqual(-1, [1, 2, 3].indexOf(0));
+		console.log("Sample test done");
+
+		//assert.ok(false, "This should fail");
+		
+		done();
 	});
 });
