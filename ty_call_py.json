@@ -1,0 +1,10 @@
+{
+  "main_app": "py_app",
+  "py_app": {
+    "python_path": "C:/Tools/Python312/python.exe",
+    "package_path": "C:/work/GitHub/db-autotest/db-autotest-mssql",
+    "child_process": "{package_path}/src/mss/child_process.py",
+    "cwd": "{package_path}",
+    "PYTHONPATH": "{package_path}/src;{package_path}/tests"
+  }
+}
