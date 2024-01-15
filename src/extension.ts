@@ -8,6 +8,7 @@ import * as process from 'process';
 import { M_Logging } from './m_utils/call_py/m_logging';
 import M_Config from './m_utils/call_py/m_config';
 import { PythonMessage, python_message_type } from './m_utils/call_py/python_message';
+import { EntityTreeProvider } from './m_utils/m_entity/entity_tree_provider';
 
 
 // This method is called when your extension is activated
@@ -19,6 +20,9 @@ export function activate(context: vscode.ExtensionContext) {
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
 	console.log(`Context ${context.extensionPath} ${context.workspaceState} ${context.globalState} ${context.subscriptions} ${context.extensionMode}`);
+
+	let m_view = vscode.window.registerTreeDataProvider("VIEW_ID", new EntityTreeProvider());
+
 		let disposable = vscode.commands.registerCommand('db-autotest.callPython', async () => {
 			// The code you place here will be executed every time your command is executed
 			// myFunction();
