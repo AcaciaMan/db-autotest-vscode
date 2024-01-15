@@ -2,7 +2,13 @@ import * as vscode from "vscode";
 
 export class EntityTreeProvider implements vscode.TreeDataProvider<string> {
   getTreeItem(element: string): vscode.TreeItem {
-    return new vscode.TreeItem(element);
+    const treeItem = new vscode.TreeItem(element);
+    treeItem.command = {
+      command: "extension.enterEntityId",
+      title: "Enter Entity ID",
+      arguments: [element],
+    };
+    return treeItem;
   }
 
   getChildren(element?: string): Thenable<string[]> {

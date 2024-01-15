@@ -23,6 +23,22 @@ export function activate(context: vscode.ExtensionContext) {
 
 	let m_view = vscode.window.registerTreeDataProvider("VIEW_ID", new EntityTreeProvider());
 
+	  context.subscriptions.push(
+      vscode.commands.registerCommand(
+        "extension.enterEntityId",
+        async (element) => {
+          const entityId = await vscode.window.showInputBox({
+            prompt: "Enter Entity ID",
+          });
+          if (entityId) {
+            vscode.window.showInformationMessage(
+              `Entity ID for ${element}: ${entityId}`
+            );
+          }
+        }
+      )
+    );
+
 		let disposable = vscode.commands.registerCommand('db-autotest.callPython', async () => {
 			// The code you place here will be executed every time your command is executed
 			// myFunction();
