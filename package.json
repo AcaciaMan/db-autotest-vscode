@@ -22,7 +22,7 @@
       "activitybar": [
         {
           "id": "my-unique-id",
-          "title": "My Activity Bar Item",
+          "title": "DB-Autotest",
           "icon": "src/activity_icon.png"
         }
       ]
@@ -32,7 +32,12 @@
         {
           "id": "VIEW_ID",
           "name": "Entities"
+        },
+        {
+          "id": "VIEW_META_ID",
+          "name": "Meta Data"
         }
+
       ]
     }
   },

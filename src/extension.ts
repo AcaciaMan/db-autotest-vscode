@@ -10,6 +10,7 @@ import M_Config from './m_utils/call_py/m_config';
 import { PythonMessage, python_message_type } from './m_utils/call_py/python_message';
 import { EntityTreeProvider } from './m_utils/m_entity/entity_tree_provider';
 import { CommandHandler } from './m_utils/m_command/command_handler';
+import { MetaTreeProvider } from './m_utils/m_meta/meta_tree_provider';
 
 
 // This method is called when your extension is activated
@@ -23,6 +24,7 @@ export function activate(context: vscode.ExtensionContext) {
 	console.log(`Context ${context.extensionPath} ${context.workspaceState} ${context.globalState} ${context.subscriptions} ${context.extensionMode}`);
 
 	let m_view = vscode.window.registerTreeDataProvider("VIEW_ID", new EntityTreeProvider());
+	let m_view_meta = vscode.window.registerTreeDataProvider("VIEW_META_ID", new MetaTreeProvider() );
 
 	  context.subscriptions.push(
       vscode.commands.registerCommand(
