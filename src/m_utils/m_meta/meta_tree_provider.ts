@@ -15,7 +15,7 @@ export class MetaTreeProvider implements vscode.TreeDataProvider<string> {
     if (element) {
       return Promise.resolve([]);
     } else {
-      return Promise.resolve(["Item 1", "Item 2", "Item 3"]);
+      return Promise.resolve(["Table info"]);
     }
   }
 }

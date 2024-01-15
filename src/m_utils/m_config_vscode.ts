@@ -1,54 +1,52 @@
 import fs from "fs";
-
-import { PythonApp } from "./python_app";
-import { PythonChannel } from "./python_channel";
 import path from "path";
+import sqlite3 from "sqlite3";
 
-// generate a class M_Config with static property
-// config that contains the parsed ty_call_py.json file
+// generate a class M_Config_VSCode with static property
+// config that contains the parsed db_autotest_vscode.json file
 // load the file only once
-class M_Config {
-  static m_channel = new PythonChannel();
-  static config = M_Config.readTsConfig();
-  static main_app = M_Config.config.main_app;
-  static _main_con: PythonApp;
+class M_Config_VSCode {
+  static config = M_Config_VSCode.readTsConfig();
+  static _meta_con: sqlite3.Database;
 
   private constructor() {} // Prevent instantiation
 
-  public static async destroy() {
-    await M_Config.main_con.destroy();
-    M_Config.main_con = null;
+  public static destroy() {
+    M_Config_VSCode.meta_con.close();
+    M_Config_VSCode.meta_con = null;
   }
 
-    static findSrcDirectories(filePath: string): string[] {
-        const srcDirectories: string[] = [];
+  static findSrcDirectories(filePath: string): string[] {
+    const srcDirectories: string[] = [];
 
-        const currentDirectory = path.dirname(filePath);
-        const directories = currentDirectory.split(path.sep);
+    const currentDirectory = path.dirname(filePath);
+    const directories = currentDirectory.split(path.sep);
 
-        for (let i = 0; i < directories.length; i++) {
-          const directory = directories.slice(0, i + 1).join(path.sep);
-          const stats = fs.statSync(directory);
+    for (let i = 0; i < directories.length; i++) {
+      const directory = directories.slice(0, i + 1).join(path.sep);
+      const stats = fs.statSync(directory);
 
-          if (stats.isDirectory() && fs.existsSync(path.join(directory, "ty_call_py.json"))) {
-            srcDirectories.push(directory);
-          }
-        }
-
-        return srcDirectories;
+      if (
+        stats.isDirectory() &&
+        fs.existsSync(path.join(directory, "db_autotest_vscode.json"))
+      ) {
+        srcDirectories.push(directory);
       }
+    }
+
+    return srcDirectories;
+  }
 
   static readTsConfig(tsConfig?: any) {
     if (!tsConfig) {
-
       // const currentFilePath = __filename;
       const cwdName = __dirname;
       //const cwdName = process.cwd();
 
-      const srcDirectories = M_Config.findSrcDirectories(cwdName);
+      const srcDirectories = M_Config_VSCode.findSrcDirectories(cwdName);
       const tsConfigPaths: string[] = [];
       for (const srcDirectory of srcDirectories) {
-        tsConfigPaths.push(path.join(srcDirectory, "ty_call_py.json"));
+        tsConfigPaths.push(path.join(srcDirectory, "db_autotest_vscode.json"));
       }
 
       let tsConfigContent = "";
@@ -65,10 +63,10 @@ class M_Config {
       }
 
       if (!tsConfigContent) {
-        throw new Error("Unable to find ty_call_py.json file.");
+        throw new Error("Unable to find db_autotest_vscode.json file.");
       }
 
-      console.log("Found ty_call_py.json at:", foundTsConfigPath);
+      console.log("Found db_autotest_vscode.json at:", foundTsConfigPath);
 
       tsConfig = JSON.parse(tsConfigContent);
     }
@@ -80,17 +78,17 @@ class M_Config {
     return tsConfig;
   }
 
-    static get main_con(): PythonApp {
-        if (!M_Config._main_con) {
-        M_Config._main_con = new PythonApp(M_Config.main_app);
-        M_Config._main_con.callPythonScript();
-        }
-        return M_Config._main_con;
+  static get meta_con(): sqlite3.Database {
+    if (!M_Config_VSCode._meta_con) {
+      M_Config_VSCode._meta_con = new sqlite3.Database(
+        M_Config_VSCode.config.meta_db.db_path);
     }
+    return M_Config_VSCode._meta_con;
+  }
 
-    static set main_con(value: PythonApp) {
-        M_Config._main_con = value;
-    }
+  static set meta_con(value: sqlite3.Database) {
+    M_Config_VSCode._meta_con = value;
+  }
 }
 
 function getStringBetweenCurlyBrackets(value: string): string | null {
@@ -124,4 +122,4 @@ function walkJsonTree(obj: any, callback: (key: string, value: any) => void) {
   }
 }
 
-export default M_Config;
+export default M_Config_VSCode;

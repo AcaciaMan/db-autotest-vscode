@@ -1,5 +1,7 @@
 {
     "META_DB": {
         "db_path": "C:/Work/m_mssql.db"
-    }  
+    },
+    
+    "main_env": "dev"
 }

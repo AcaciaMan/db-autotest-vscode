@@ -11,6 +11,8 @@ import { PythonMessage, python_message_type } from './m_utils/call_py/python_mes
 import { EntityTreeProvider } from './m_utils/m_entity/entity_tree_provider';
 import { CommandHandler } from './m_utils/m_command/command_handler';
 import { MetaTreeProvider } from './m_utils/m_meta/meta_tree_provider';
+import { Test } from 'mocha';
+import { TestCallPython } from './test/test_call_python';
 
 
 // This method is called when your extension is activated
@@ -33,24 +35,7 @@ export function activate(context: vscode.ExtensionContext) {
       )
     );
 
-		let disposable = vscode.commands.registerCommand('db-autotest.callPython', async () => {
-			// The code you place here will be executed every time your command is executed
-			// myFunction();
-			vscode.window.showInformationMessage("Start all tests 345");
-      M_Logging.log("Start of test readTsConfig");
-
-      console.log("Main app:", M_Config.main_app);
-      console.log("Config:", M_Config.config);
-      console.log("Main con:", M_Config.main_con.child.pid);
-      const m_python_message = new PythonMessage(python_message_type.m_json);
-      await M_Config.main_con.send(m_python_message);
-
-	  vscode.window.showInformationMessage(M_Config.main_con.child.pid.toString());
-	  await M_Config.main_con.sendStr("Hello from VS Code!");
-      await M_Config.destroy();
-      M_Logging.log("End of test readTsConfig");			
-			
-		});
+		let disposable = vscode.commands.registerCommand('db-autotest.callPython', TestCallPython.test_call);
 
 
 	}
