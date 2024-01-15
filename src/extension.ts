@@ -9,6 +9,7 @@ import { M_Logging } from './m_utils/call_py/m_logging';
 import M_Config from './m_utils/call_py/m_config';
 import { PythonMessage, python_message_type } from './m_utils/call_py/python_message';
 import { EntityTreeProvider } from './m_utils/m_entity/entity_tree_provider';
+import { CommandHandler } from './m_utils/m_command/command_handler';
 
 
 // This method is called when your extension is activated
@@ -25,17 +26,8 @@ export function activate(context: vscode.ExtensionContext) {
 
 	  context.subscriptions.push(
       vscode.commands.registerCommand(
-        "extension.enterEntityId",
-        async (element) => {
-          const entityId = await vscode.window.showInputBox({
-            prompt: "Enter Entity ID",
-          });
-          if (entityId) {
-            vscode.window.showInformationMessage(
-              `Entity ID for ${element}: ${entityId}`
-            );
-          }
-        }
+        "extension.enterEntityId", CommandHandler.getEntity
+
       )
     );
 
