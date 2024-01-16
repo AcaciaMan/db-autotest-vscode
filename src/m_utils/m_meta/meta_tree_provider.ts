@@ -17,13 +17,17 @@ export class MetaTreeProvider
 {
   getTreeItem(element: m_meta_selects_table): vscode.TreeItem {
     const treeItem = new vscode.TreeItem(element.name); // Use the 'name' property as the label
-    /*
-    treeItem.command = {
-      command: "extension.enterEntityId",
-      title: "Enter Entity ID",
-      arguments: [element],
-    };
-    */
+
+    treeItem.contextValue = "m_meta_selects_table"; // Use the 'contextValue' property to distinguish TreeItems in the 'onViewItemActivated' function
+
+    treeItem.tooltip = element.schema + ' ' + element.created_at; // Set the tooltip to the element name
+
+    treeItem.description = element.schema + ' ' + element.last_version_loaded_at + ' ' + element.last_version_id; // Set the description to the element name
+
+    if (element.droped === 1) {
+      treeItem.label = `~~${treeItem.label}~~`; // Add strikethrough formatting to the label
+    }
+
     return treeItem;
   }
 
