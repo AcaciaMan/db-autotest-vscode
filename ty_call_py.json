@@ -5,6 +5,6 @@
     "package_path": "C:/work/GitHub/db-autotest/db-autotest-mssql",
     "child_process": "{package_path}/src/mss/child_process.py",
     "cwd": "{package_path}",
-    "PYTHONPATH": "{package_path}/src;{package_path}/tests"
+    "PYTHONPATH": "{package_path}/src;{package_path}/tests;C:/work/GitHub/db-autotest/Python/src"
   }
 }

@@ -6,7 +6,8 @@ export class M_Meta_Selects {
 
     return new Promise((resolve, reject) => {
     M_Config_VSCode.meta_con.get(
-      `SELECT schema as schema,
+      `SELECT d.m_object_detail_id as m_object_detail_id,
+       schema as schema,
        name as name,
        datetime(create_date, 'unixepoch', 'localtime') AS created_at,
        v.m_version_id AS last_version_id,
@@ -30,13 +31,16 @@ export class M_Meta_Selects {
                   e.name = '${M_Config_VSCode.config.main_env}'
        )
 AND 
-       v.m_version_id = d.m_version_id`, [], (err, rows) => {
+       v.m_version_id = d.m_version_id`,
+      [],
+      (err, rows) => {
         if (err) {
           reject(err);
         } else {
           resolve(rows);
         }
-  });});
+      }
+    );});
 
   }
 
@@ -44,7 +48,8 @@ AND
 
     return new Promise((resolve, reject) => {
     M_Config_VSCode.meta_con.all(
-      `SELECT schema as schema,
+      `SELECT d.m_object_detail_id as m_object_detail_id,
+       schema as schema,
        name as name,
        datetime(create_date, 'unixepoch', 'localtime') AS created_at,
        v.m_version_id AS last_version_id,
@@ -67,13 +72,16 @@ AND
                   e.name = '${M_Config_VSCode.config.main_env}'
        )
 AND 
-       v.m_version_id = d.m_version_id`, [], (err, rows) => {
+       v.m_version_id = d.m_version_id`,
+      [],
+      (err, rows) => {
         if (err) {
           reject(err);
         } else {
           resolve(rows);
         }
-  });});
+      }
+    );});
 
 
   }

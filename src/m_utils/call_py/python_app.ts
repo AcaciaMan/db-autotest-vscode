@@ -6,7 +6,7 @@ export class PythonApp {
   private _app_id: string;
   private _child: ChildProcess;
   public app_params: any;
-  public result: any;
+  public result: object;
   public python_message = new PythonMessage(python_message_type.m_json);
 
   constructor(app_id: string) {

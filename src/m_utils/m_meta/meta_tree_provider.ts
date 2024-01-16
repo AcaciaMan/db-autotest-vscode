@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import { M_Meta_Selects } from "../m_selects/m_meta_selects";
 
 export type m_meta_selects_table = {
+  m_object_detail_id: number;
   schema: string;
   name: string;
   created_at: string;
@@ -40,7 +41,7 @@ export class MetaTreeProvider
       arguments: [element],
     };
     */
-   
+
     return treeItem;
   }
 
