@@ -12,7 +12,9 @@ class M_Config_VSCode {
   private constructor() {} // Prevent instantiation
 
   public static destroy() {
+    if(M_Config_VSCode._meta_con) {
     M_Config_VSCode.meta_con.close();
+    }
     M_Config_VSCode.meta_con = null;
   }
 

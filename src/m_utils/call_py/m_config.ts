@@ -16,7 +16,10 @@ class M_Config {
   private constructor() {} // Prevent instantiation
 
   public static async destroy() {
-    await M_Config.main_con.destroy();
+    if (M_Config.main_con) {
+      await M_Config.main_con.destroy();
+    }
+    
     M_Config.main_con = null;
   }
 

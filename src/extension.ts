@@ -10,9 +10,10 @@ import M_Config from './m_utils/call_py/m_config';
 import { PythonMessage, python_message_type } from './m_utils/call_py/python_message';
 import { EntityTreeProvider } from './m_utils/m_entity/entity_tree_provider';
 import { CommandHandler } from './m_utils/m_command/command_handler';
-import { MetaTreeProvider } from './m_utils/m_meta/meta_tree_provider';
+import { MetaTreeProvider, m_meta_selects_table } from './m_utils/m_meta/meta_tree_provider';
 import { Test } from 'mocha';
 import { TestCallPython } from './test/test_call_python';
+import M_Config_VSCode from './m_utils/m_config_vscode';
 
 
 // This method is called when your extension is activated
@@ -37,5 +38,13 @@ export function activate(context: vscode.ExtensionContext) {
 
 		let disposable = vscode.commands.registerCommand('db-autotest.callPython', TestCallPython.test_call);
 
+		let disposable2 = vscode.commands.registerCommand('db-autotest.openFileWithElementInfo', CommandHandler.openTxtFile);
 
+
+	}
+
+	// Add on vscode exit function call
+	export function deactivate() {
+		M_Config.destroy();
+		M_Config_VSCode.destroy();
 	}

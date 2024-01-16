@@ -16,6 +16,17 @@
       {
         "command": "db-autotest.callPython",
         "title": "Call Python"
+      },
+      {
+        "command": "db-autotest.openFileWithElementInfo",
+        "title": "Open File With Element Info",
+        "category": "View",
+        "icon": "src/activity_icon.png",
+        "when": "view == my-unique-id",
+        "arguments": [
+          "${selectedItem}"
+        ]
+
       }
     ],
     "viewsContainers": {
@@ -36,6 +47,14 @@
         {
           "id": "VIEW_META_ID",
           "name": "Meta Data"
+        }
+      ]
+    },
+    "menus": {
+      "view/item/context": [
+        {
+          "command": "db-autotest.openFileWithElementInfo",
+          "when": "viewItem == m_meta_selects_table"
         }
       ]
     }
