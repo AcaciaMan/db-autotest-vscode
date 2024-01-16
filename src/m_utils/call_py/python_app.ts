@@ -54,6 +54,7 @@ export class PythonApp {
     if (this.child.stderr) {
       this.child.stderr.on("data", (data: Buffer) => {
         console.log(`stderr: ${data}`);
+        M_Config.m_channel.bReceivedResponse = true;
       });
     }
 

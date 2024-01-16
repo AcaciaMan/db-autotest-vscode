@@ -21,9 +21,8 @@ export class M_PyCall {
             ];
             m_script.declarations = [{m_args: {m_id: [m_object_detail_id]}}];
             m_script.code = [
-                "M_Config.main_con = M_Config.meta()",
               "cl = C_M_Table()",
-              "cl.c_main.load(&{m_args})",
+              "cl.c_main.load(&{m_args}, con = M_Config.meta)",
               "m_result = M_Yaml().get_yaml(cl.c_main.m_structure)",
             ];
             m_script.m_return = "m_result";
