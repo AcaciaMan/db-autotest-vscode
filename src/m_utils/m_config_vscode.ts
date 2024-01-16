@@ -80,14 +80,37 @@ class M_Config_VSCode {
 
   static get meta_con(): sqlite3.Database {
     if (!M_Config_VSCode._meta_con) {
-      M_Config_VSCode._meta_con = new sqlite3.Database(
-        M_Config_VSCode.config.meta_db.db_path);
-    }
+      M_Config_VSCode.getMetaCon().then(() => {
+        return M_Config_VSCode._meta_con;
+
+    }); 
+  }
     return M_Config_VSCode._meta_con;
   }
 
   static set meta_con(value: sqlite3.Database) {
     M_Config_VSCode._meta_con = value;
+  }
+
+  public static async getMetaCon(): Promise<void> {
+    let m_promise: Promise<void>; // Declare m_promise variable
+
+    m_promise = new Promise<void>((resolve, reject) => {
+      M_Config_VSCode._meta_con = new sqlite3.Database(
+        M_Config_VSCode.config.META_DB.db_path,
+        (err) => {
+          if (err) {
+            console.error(err.message);
+            reject(err);
+          } else {
+            console.log("Connected to the META_DB.db database.");
+            resolve();
+          }
+        }
+      );
+    });
+
+    return m_promise;
   }
 }
 
