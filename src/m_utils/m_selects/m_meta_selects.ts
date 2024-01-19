@@ -3,10 +3,9 @@ import M_Config_VSCode from "../m_config_vscode";
 
 export class M_Meta_Selects {
   public static async getTableInfo(table_name: string): Promise<any> {
-
     return new Promise((resolve, reject) => {
-    M_Config_VSCode.meta_con.get(
-      `SELECT d.m_object_detail_id as m_object_detail_id,
+      M_Config_VSCode.meta_con.get(
+        `SELECT d.m_object_detail_id as m_object_detail_id,
        schema as schema,
        name as name,
        datetime(create_date, 'unixepoch', 'localtime') AS created_at,
@@ -32,23 +31,22 @@ export class M_Meta_Selects {
        )
 AND 
        v.m_version_id = d.m_version_id`,
-      [],
-      (err, rows) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(rows);
+        [],
+        (err, rows) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(rows);
+          }
         }
-      }
-    );});
-
+      );
+    });
   }
 
   public static async getAllTableInfo(): Promise<any> {
-
     return new Promise((resolve, reject) => {
-    M_Config_VSCode.meta_con.all(
-      `SELECT d.m_object_detail_id as m_object_detail_id,
+      M_Config_VSCode.meta_con.all(
+        `SELECT d.m_object_detail_id as m_object_detail_id,
        schema as schema,
        name as name,
        datetime(create_date, 'unixepoch', 'localtime') AS created_at,
@@ -73,16 +71,31 @@ AND
        )
 AND 
        v.m_version_id = d.m_version_id`,
-      [],
-      (err, rows) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(rows);
+        [],
+        (err, rows) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(rows);
+          }
         }
-      }
-    );});
+      );
+    });
+  }
 
-
+  public static async getAllEntities(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      M_Config_VSCode.meta_con.all(
+        `SELECT * FROM m_entity`,
+        [],
+        (err, rows) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(rows);
+          }
+        }
+      );
+    });
   }
 }
