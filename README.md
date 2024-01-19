@@ -1,6 +1,8 @@
 # db-autotest
 
-Visual Studio Code extension for Python package db-autotest DB Database test automation
+Visual Studio Code extension for Python package db-autotest DB Database test automation.
+
+Python package db-autotest is developed in AcaciaMan/db-autotest repository.
 
 ## Features
 
