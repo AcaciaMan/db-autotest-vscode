@@ -26,7 +26,16 @@
         "arguments": [
           "${selectedItem}"
         ]
-
+      },
+      {
+        "command": "db-autotest.openFileWithEntityInfo",
+        "title": "Open File With Enity Info",
+        "category": "View",
+        "icon": "src/activity_icon.png",
+        "when": "view == my-unique-id",
+        "arguments": [
+          "${selectedItem}"
+        ]
       }
     ],
     "viewsContainers": {
@@ -55,6 +64,10 @@
         {
           "command": "db-autotest.openFileWithElementInfo",
           "when": "viewItem == m_meta_selects_table"
+        },
+        {
+          "command": "db-autotest.openFileWithEntityInfo",
+          "when": "viewItem == m_meta_selects_entity"
         }
       ]
     }

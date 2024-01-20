@@ -19,11 +19,13 @@ export class EntityTreeProvider
 
     treeItem.contextValue = "m_meta_selects_entity";
 
+    /*
     treeItem.command = {
       command: "extension.enterEntityId",
       title: "Enter Entity ID",
       arguments: [element],
     };
+    */
     return treeItem;
   }
 

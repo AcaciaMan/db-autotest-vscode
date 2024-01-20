@@ -40,6 +40,11 @@ export function activate(context: vscode.ExtensionContext) {
 
 		let disposable2 = vscode.commands.registerCommand('db-autotest.openFileWithElementInfo', CommandHandler.openTxtFile);
 
+		let disposable3 = vscode.commands.registerCommand(
+      "db-autotest.openFileWithEntityInfo",
+      CommandHandler.openEntityTxtFile
+    );
+
 
 	}
 
