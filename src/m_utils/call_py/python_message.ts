@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import M_Config from "./m_config";
 
 export enum python_message_type {
